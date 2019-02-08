@@ -1,0 +1,52 @@
+const path = require('path')
+
+const webpack = require('webpack')
+
+const htmlWebpackPlugin = require('html-webpack-plugin')
+
+const { VueLoaderPlugin } = require('vue-loader')
+
+module.exports = {
+    entry: path.join(__dirname, './src/main.js'),
+    output: {
+        path: path.join(__dirname, './dist/bundle.js'),
+        filename: 'bundle.js'
+    },
+    mode: 'development',
+    plugins: [
+        new htmlWebpackPlugin({
+            template: path.join(__dirname, './src/index.html'),
+            filename: 'index.html'
+        }),
+        new VueLoaderPlugin()
+    ],
+    module: {
+        rules: [
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+
+            { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
+
+            { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+
+            { test: /\.(ttf|eot|svg|woff|woff2)$/, use: 'url-loader' },
+
+            { test: /\.(jpg|png|gif|bmp|jepg)$/, use: ['url-loader?limit=7631&name=[hash:8]-[name].[ext]'] },
+
+            { test :/\.vue$/ , use:'vue-loader'},
+
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+
+                }
+            }
+        ]
+    },
+    resolve:{
+        alias:{
+            // "vue$":"vue/dist/vue.js"
+        }
+    }
+}
