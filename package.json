@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.2.1",
-    "mint-ui": "^2.2.13"
+    "mint-ui": "^2.2.13",
+    "moment": "^2.24.0"
   }
 }

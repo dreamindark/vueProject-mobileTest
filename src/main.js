@@ -7,6 +7,12 @@ Vue.use(VueRouter)
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
+import moment from 'moment'
+
+// 定义全局过滤器
+Vue.filter('dataFormat',function(dataStr,pattern="YYYY-MM-DD:mm:ss"){
+    moment(dataStr).format(pattern)
+})
 
 import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
